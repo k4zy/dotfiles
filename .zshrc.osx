@@ -53,4 +53,6 @@ alias apache_error_log='tail -f /var/log/apache2/error_log | ~/useful_script/apa
 alias apache_status_log='tail -f /var/log/apache2/access_log | ~/useful_script/apache/colorize_log.rb'
 alias point-one='ssh kazy@180.235.230.135'
 alias lolipop= 'ssh oops.jp-kazy@ssh082.lolipop.jp -p 2222'
-alias sakuraVPS='ssh -p 9101 -i ~/.ssh/id_rsa sakura_kazy@133.242.141.222'
+alias ssh_sakura='ssh -p 9101 -i ~/.ssh/id_rsa sakura_kazy@133.242.141.222'
+alias mosh_sakura='mosh sakura_kazy@133.242.141.222'
+
