@@ -12,7 +12,13 @@ map <C-e> <End>
 map  m vit
 
 "Unite用の設定
-nnoremap \o :<C-u>Unite  file <CR>
+"nnoremap \o :<C-u>Unite  file <CR>
+nnoremap \o :<C-u>Unite file_rec/async<CR>
+nnoremap \g :<C-u>Unite grep:.<CR>
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+let g:unite_source_grep_recursive_opt = ''
+let g:unite_source_grep_max_candidates = 200
 nnoremap \b :<C-u>Unite  buffer<CR>
 
 "taglist

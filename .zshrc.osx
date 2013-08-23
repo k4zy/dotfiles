@@ -8,8 +8,6 @@ function _lhost {
 }
 compdef _lhost lhost
 
-#eval "$(rbenv init -)"
-eval "$(pyenv init -)"
 
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 fpath=($HOME/.tmuxinator/completion ${fpath})
@@ -33,26 +31,57 @@ export PATH=$PATH:$ANDROID_NDK_ROOT
 PATH=/usr/local/bin:$PATH
 export PATH
 
+#eval "$(rbenv init -)"
+eval "$(pyenv init -)"
+
 #vimをmvimに変更
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+
+if [ -x /usr/bin/colordiff -o -x /usr/local/bin/colordiff ]; then
+  alias diff='colordiff -u'
+else
+  alias diff='diff -u'
+fi
+
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 #----------------------------------------------------------
 # エイリアス
 #----------------------------------------------------------
 alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
-
-alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-alias view='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/view "$@"'
-alias vimdiff='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/vimdiff "$@"'
-alias sakuraVPS='ssh -i ~/.ssh/sakura_rsa -p 2589 kazy@133.242.141.222'
 alias lolipop='ssh -p 2222 oops.jp-kazy@ssh082.lolipop.jp'
-alias refresh='source ~/.zshrc'
 alias iphone='open /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app'
 alias help='vim ~/Dropbox/help.md'
 alias apache_error_log='tail -f /var/log/apache2/error_log | ~/useful_script/apache/colorize_error_log.rb'
 alias apache_status_log='tail -f /var/log/apache2/access_log | ~/useful_script/apache/colorize_log.rb'
 alias point-one='ssh kazy@180.235.230.135'
-alias lolipop= 'ssh oops.jp-kazy@ssh082.lolipop.jp -p 2222'
+alias lolipop='ssh oops.jp-kazy@ssh082.lolipop.jp -p 2222'
 alias ssh_sakura='ssh -p 9101 -i ~/.ssh/id_rsa sakura_kazy@133.242.141.222'
 alias mosh_sakura='mosh sakura_kazy@133.242.141.222'
-
+alias idea='vim Dropbox/idea.md'
+alias mvim='/usr/local/Cellar/macvim-kaoriya/HEAD/MacVim.app/Contents/MacOS/mvim'
+alias vim='/usr/local/Cellar/macvim-kaoriya/HEAD/MacVim.app/Contents/MacOS/Vim'
+alias pyserve='pserve ../development.ini --reload'
+alias cat='pygmentize -O style=monokai -f console256 -g'
+alias ipython='ipython3'
+alias sed='/usr/local/Cellar/gnu-sed/4.2.2/bin/gsed'
+# alias -s 系
+function runcpp () { gcc $1 && shift && ./a.out $@ }
+alias -s {c,cpp}=runcpp
+function extract() {
+  case $1 in
+    *.tar.gz|*.tgz) tar xzvf $1;;
+    *.tar.xz) tar Jxvf $1;;
+    *.zip) unzip $1;;
+    *.lzh) lha e $1;;
+    *.tar.bz2|*.tbz) tar xjvf $1;;
+    *.tar.Z) tar zxvf $1;;
+    *.gz) gzip -dc $1;;
+    *.bz2) bzip2 -dc $1;;
+    *.Z) uncompress $1;;
+    *.tar) tar xvf $1;;
+    *.arj) unarj $1;;
+  esac
+}
+alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract

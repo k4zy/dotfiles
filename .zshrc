@@ -11,7 +11,8 @@ export OUTPUT_CHARSET=utf-8
 alias ls='ls -hF'
 alias ll='ls -l'
 alias la='ls -A'
-
+alias refresh='source ~/.zshrc'
+export EDITOR=/usr/local/Cellar/macvim-kaoriya/HEAD/MacVim.app/Contents/MacOS/Vim
 
 #----------------------------------------------------------
 # 基本
@@ -27,7 +28,7 @@ setopt prompt_subst
 # コマンドラインでも#以降をコメントと見なす
 setopt interactive_comments
 # emacs風のキーバインド
-#bindkey -e
+bindkey -e
 # C-s, C-qを無効にする
 setopt no_flow_control
 # 日本語のファイル名を表示可能

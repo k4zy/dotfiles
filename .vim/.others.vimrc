@@ -9,19 +9,14 @@ if has('clipboard')
     set clipboard=unnamed,autoselect
 endif
 
-"let file_name = expand("%")
-"if has('vim_starting') &&  file_name == ""
-"    autocmd VimEnter *  NERDTree ./
-"endif
-
-
-" ctl+nの設定
+" ctl+pの設定
 let g:ctrlp_use_migemo = 1
 let g:ctrlp_clear_cache_on_exit = 0   " 終了時キャッシュをクリアしない
 let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
 
 "power lineの設定
-let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
+let g:airline_theme='powerlineish'
 set t_Co=256
 
 noremap ; :

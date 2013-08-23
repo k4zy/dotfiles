@@ -1,31 +1,48 @@
-
+" Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_min_syntax_length = 2
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
-let g:neocomplcache_snippets_dir = "~/dotfiles/.vim/snippets"
 " Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-            \ 'default'    : '',
-            \ 'perl'       : '~/dotfiles/.vim/dict/perl.dict',
-            \ 'javascript' : '~/dotfiles/.vim/dict/javascript.dict',
-            \ 'c'          : '~/dotfiles/.vim/dict/c.dict',
-            \ 'cpp'        : '~/dotfiles/.vim/dict/cpp.dict',
-            \ 'java'       : '~/dotfiles/.vim/dict/java.dict',
-            \ 'php'        : '~/dotfiles/.vim/dict/php.dict',
-            \ 'scala'      : '~/dotfiles/.vim/dict/scala.dict',
-            \ }
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default'    : '',
+    \ 'vimshell'   : $HOME.'/.vimshell_hist',
+    \ 'perl'       : '~/dotfiles/.vim/dict/perl.dict',
+    \ 'javascript' : '~/dotfiles/.vim/dict/javascript.dict',
+    \ 'c'          : '~/dotfiles/.vim/dict/c.dict',
+    \ 'cpp'        : '~/dotfiles/.vim/dict/cpp.dict',
+    \ 'java'       : '~/dotfiles/.vim/dict/java.dict',
+    \ 'php'        : '~/dotfiles/.vim/dict/php.dict',
+    \ 'scala'      : '~/dotfiles/.vim/dict/scala.dict',
+    \ }
 
 " Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
 endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-" for snippets
-imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-n>"
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=jedi#complete
+
+let g:jedi#auto_vim_configuration = 0
+
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+        let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'

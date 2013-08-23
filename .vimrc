@@ -25,6 +25,10 @@ source ~/dotfiles/.vim/.nerd.vimrc
 source ~/dotfiles/.vim/.others.vimrc
 " インデントラインの設定 
 source ~/dotfiles/.vim/.indent_guide.vimrc
+"tagの設定
+"source ~/dotfiles/.vim/.tags.vimrc
+"railsの設定
+source ~/dotfiles/.vim/.rails.vimrc
 "プラグインの開発版の設定
 "source ~/dotfiles/.vim/.develop.vimrc
 "source ~/dotfiles/.vim/.py_dev.vimrc
