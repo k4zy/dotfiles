@@ -1,8 +1,10 @@
+fpath=(/usr/local/share/zsh-completions $fpath)
 # 文字コードの設定
 export LC_CTYPE=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 export JLESSCHARSET=japanese-sjis
 export OUTPUT_CHARSET=utf-8
+
 
 #----------------------------------------------------------
 # エイリアス
@@ -11,8 +13,7 @@ export OUTPUT_CHARSET=utf-8
 alias ls='ls -hF'
 alias ll='ls -l'
 alias la='ls -A'
-alias refresh='source ~/.zshrc'
-export EDITOR=/usr/local/Cellar/macvim-kaoriya/HEAD/MacVim.app/Contents/MacOS/Vim
+alias refresh='exec $SHELL -l'
 
 #----------------------------------------------------------
 # 基本
@@ -147,7 +148,21 @@ else
 fi
 PROMPT+=" %{$color%}$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b%{${reset_color}%}
 "
+#PROMPT+="%{${fg[cyan]}%}pyenv_:$(pyenv global 2> /dev/null | sed -e 's/* \(.*\)/\1 /')%b%{${reset_color}%}
+#"
 }
+
+#----------------------------------------------------------
+# 環境依存対応
+#----------------------------------------------------------
+case ${OSTYPE} in
+    darwin*)
+        source ~/dotfiles/.zshrc.osx
+        ;;
+    linux*)
+        ;;
+esac
+
 #----------------------------------------------------------
 # その他
 #----------------------------------------------------------
@@ -162,19 +177,8 @@ setopt notify
 e_normal=`echo -e "\033[0;30m"`
 e_RED=`echo -e "\033[1;31m"`
 e_BLUE=`echo -e "\033[1;36m"`
+
 function make() {
 LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 }
 function mk () { mkdir -p "$@" && eval cd "\"\$$#\""; }
-
-#----------------------------------------------------------
-# 環境依存対応
-#----------------------------------------------------------
-case ${OSTYPE} in
-    darwin*)
-        source ~/dotfiles/.zshrc.osx
-        ;;
-    linux*)
-        ;;
-esac
-

@@ -12,16 +12,17 @@ NeoBundle 'Shougo/vimproc', {
       \    },
       \ }
 
-if has("lua")
-  NeoBundleLazy 'Shougo/neocomplete', { 'autoload' : {
+function! s:meet_neocomplete_requirements()
+    return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
+endfunction
+
+if s:meet_neocomplete_requirements()
+    NeoBundleLazy 'Shougo/neocomplete', { 'autoload' : {
         \   'insert' : 1,
         \ }}
 else
-  NeoBundleLazy 'Shougo/neocomplete', {
-        \ 'autoload' : {
-        \   'insert' : 1,
-        \ },
-        \ }
+    NeoBundleFetch 'Shougo/neocomplete.vim'
+    NeoBundle 'Shougo/neocomplcache.vim'
 endif
 
 NeoBundleLazy 'Shougo/neosnippet', {
@@ -89,8 +90,9 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/unite.vim'
 
-NeoBundle 'taichouchou2/alpaca_powertabline'
+"NeoBundle 'taichouchou2/alpaca_powertabline'
 NeoBundle 'bling/vim-airline'
+"NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'The-NERD-tree'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'thinca/vim-quickrun'
@@ -104,15 +106,15 @@ NeoBundle 'taglist.vim'
 "NeoBundle 'matchit.zip'
 NeoBundle 'ZenCoding.vim'
 "for python
-NeoBundle 'davidhalter/jedi-vim'
-"NeoBundle 'kevinw/pyflakes-vim'
-"NeoBundle 'vim-scripts/pythoncomplete.git'
+if has('python')
+    NeoBundle 'davidhalter/jedi-vim'
+endif
 NeoBundle 'nathanaelkane/vim-indent-guides'
 "for haskell
-NeoBundle 'dag/vim2hs'
-NeoBundle 'ujihisa/neco-ghc'
+"NeoBundle 'dag/vim2hs'
+"NeoBundle 'ujihisa/neco-ghc'
 "for JS
-NeoBundle 'jQuery'
+"NeoBundle 'jQuery'
 NeoBundleLazy 'JavaScript-syntax',{
             \ 'autoload' :{
             \'filetypes' : 'javascript'
@@ -122,23 +124,24 @@ NeoBundleLazy 'JavaScript-syntax',{
 NeoBundle 'vim-scripts/Source-Explorer-srcexpl.vim'
 NeoBundle 'trinity.vim'
 NeoBundle 'taglist.vim'
+NeoBundle 'majutsushi/tagbar'
 
+" others
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
 
 NeoBundle 'tpope/vim-dispatch'
 "NeoBundle 'osyo-manga/vim-precious'
-NeoBundle 'Shougo/context_filetype.vim'
-NeoBundle 'kana/vim-textobj-user'
+"NeoBundle 'Shougo/context_filetype.vim'
+"NeoBundle 'kana/vim-textobj-user'
 
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'majutsushi/tagbar'
+"NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle  'rking/ag.vim'
 
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'evidens/vim-jinja2'
+"NeoBundle 'plasticboy/vim-markdown'
+"NeoBundle 'evidens/vim-jinja2'
 
 NeoBundle 'joker1007/vim-markdown-quote-syntax'
 NeoBundle 'junegunn/vim-easy-align'

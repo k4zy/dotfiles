@@ -1,3 +1,5 @@
+export EDITOR=/usr/local/Cellar/macvim-kaoriya/HEAD/MacVim.app/Contents/MacOS/Vim
+
 function lhost {
     cd /Library/WebServer/Documents/$1
 }
@@ -14,6 +16,11 @@ fpath=($HOME/.tmuxinator/completion ${fpath})
 
 
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
+
+# goの設定
+export GOROOT=$HOME/local/go
+export GOPATH=$HOME/_go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 #----------------------------------------------------------
 # PATHの設定
@@ -85,3 +92,6 @@ function extract() {
   esac
 }
 alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

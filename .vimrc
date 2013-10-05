@@ -36,6 +36,18 @@ source ~/dotfiles/.vim/.rails.vimrc
 "エイリアスの設定
 source ~/dotfiles/.vim/.alias.vimrc
 
+"lightlineの設定
+source ~/dotfiles/.vim/.lightline.vimrc
+
+" get_cursol_group
+source ~/dotfiles/.vim/.colorscheme.vimrc
+
+if $GOROOT != ''
+  set rtp+=$GOROOT/misc/vim
+endif
+
+"autocmd ColorScheme * highlight Comment ctermfg=22 guifg=#008800
+
 syntax on
 filetype plugin on
 filetype indent on
