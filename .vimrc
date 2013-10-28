@@ -47,6 +47,10 @@ if $GOROOT != ''
 endif
 
 "autocmd ColorScheme * highlight Comment ctermfg=22 guifg=#008800
+au BufRead,BufNewFile *.{md,mkd} set ft=markdown
+
+" インサートモード時にバックスペースを使う
+set backspace=indent,eol,start
 
 syntax on
 filetype plugin on

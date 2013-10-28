@@ -104,10 +104,10 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'taglist.vim'
 " %移動を賢くする
 "NeoBundle 'matchit.zip'
-NeoBundle 'ZenCoding.vim'
+NeoBundle 'mattn/emmet-vim'
 "for python
 if has('python')
-    NeoBundle 'davidhalter/jedi-vim'
+    NeoBundle 'kazy1991/jedi-vim'
 endif
 NeoBundle 'nathanaelkane/vim-indent-guides'
 "for haskell
