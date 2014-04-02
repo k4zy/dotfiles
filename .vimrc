@@ -1,5 +1,5 @@
 "pathの設定
-source ~/dotfiles/.vim/.path.vimrc
+"source ~/dotfiles/.vim/.path.vimrc
 "bundle系の設定
 source ~/dotfiles/.vim/.bundle.vimrc
 " set .. 系の設定
@@ -46,11 +46,34 @@ if $GOROOT != ''
   set rtp+=$GOROOT/misc/vim
 endif
 
-"autocmd ColorScheme * highlight Comment ctermfg=22 guifg=#008800
+autocmd ColorScheme * highlight Comment ctermfg=22 guifg=#008800
+
 au BufRead,BufNewFile *.{md,mkd} set ft=markdown
 
 " インサートモード時にバックスペースを使う
 set backspace=indent,eol,start
+
+"----------------------------------------------------
+" showmarks.vim
+"  <Leader>mt ON/OFFトグル。
+"  <Leader>mm 次の使えるマークを使ってマーク。
+"  <Leader>mh カレント行ののマークを削除。
+"  <Leader>ma カレントバッファのマークを全部削除。
+"----------------------------------------------------
+" Enable ShowMarks
+let showmarks_enable = 1
+" Show which marks
+let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+"help、quickfixと編集不可のバッファについて、マークを表示しない。-
+let showmarks_ignore_type = "hqm"
+" Hilight lower & upper marks
+"let showmarks_hlline_lower = 1
+"let showmarks_hlline_upper = 1
+
+let g:molokai_original = 1
+
+set visualbell
+set noerrorbells
 
 syntax on
 filetype plugin on

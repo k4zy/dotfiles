@@ -1,4 +1,4 @@
-fpath=(/usr/local/share/zsh-completions $fpath)
+#fpath=(/usr/local/share/zsh-completions $fpath)
 # 文字コードの設定
 export LC_CTYPE=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
@@ -135,7 +135,7 @@ function history-all { history -E 1 }
 setopt transient_rprompt
 # プロンプト
 function precmd() {
-PROMPT="%{${fg[cyan]}%}%n%{${fg[yellow]}%} %~%{${reset_color}%}"
+PROMPT="%{${fg[yellow]}%}%n%{${fg[red]}%} %~%{${reset_color}%}"
 st=`git status 2>/dev/null`
 if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
     color=${fg[cyan]}
@@ -155,13 +155,13 @@ PROMPT+=" %{$color%}$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 
 #----------------------------------------------------------
 # 環境依存対応
 #----------------------------------------------------------
-case ${OSTYPE} in
-    darwin*)
-        source ~/dotfiles/.zshrc.osx
-        ;;
-    linux*)
-        ;;
-esac
+#case ${OSTYPE} in
+#    darwin*)
+#        source ~/dotfiles/.zshrc.osx
+#        ;;
+#    linux*)
+#        ;;
+#esac
 
 #----------------------------------------------------------
 # その他
@@ -182,3 +182,5 @@ function make() {
 LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 }
 function mk () { mkdir -p "$@" && eval cd "\"\$$#\""; }
+function hs () { history-all | ack  "$@" }
+
