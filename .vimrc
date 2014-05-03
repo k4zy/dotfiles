@@ -10,7 +10,7 @@ source ~/dotfiles/.vim/.set.vimrc
 source ~/dotfiles/.vim/.neocomp.vimrc
 " 言語ごとの設定
 source ~/dotfiles/.vim/.python.vimrc
-"source ~/dotfiles/.vim/.ruby.vimrc
+source ~/dotfiles/.vim/.ruby.vimrc
 " source ~/dotfiles/.vim/.less.vimrc
 "source ~/dotfiles/.vim/.coffee.vimrc
 "source ~/dotfiles/.vim/.latex.vimrc
@@ -72,8 +72,18 @@ let showmarks_ignore_type = "hqm"
 
 let g:molokai_original = 1
 
+" change comment color scheme
+autocmd ColorScheme * highlight Comment ctermfg=243 guifg=#757675
+
 set visualbell
 set noerrorbells
+
+
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set autoindent
 
 syntax on
 filetype plugin on

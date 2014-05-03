@@ -8,7 +8,7 @@ if has('gui_macvim')
   set number           " 行番号表示
   set nobackup         " バックアップなし
   set visualbell t_vb= " ビープ音なし
-  colorscheme custom " カラースキーマ
+  colorscheme Tomorrow-Night " カラースキーマ
   set columns=1000      " 横幅
   set lines=70         " 行数
 

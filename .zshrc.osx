@@ -13,6 +13,7 @@ compdef _lhost lhost
 
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 fpath=($HOME/.tmuxinator/completion ${fpath})
+fpath=( /Applications/Android\ Studio.app/sdk/tools /Applications/Android\ Studio.app/sdk/platform-tools ${fpath})
 
 
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
