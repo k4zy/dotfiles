@@ -14,6 +14,7 @@ alias ls='ls -hF'
 alias ll='ls -l'
 alias la='ls -A'
 alias refresh='exec $SHELL -l'
+alias iphone='open /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app'
 
 #----------------------------------------------------------
 # 基本
@@ -148,20 +149,8 @@ else
 fi
 PROMPT+=" %{$color%}$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b%{${reset_color}%}
 "
-#PROMPT+="%{${fg[cyan]}%}pyenv_:$(pyenv global 2> /dev/null | sed -e 's/* \(.*\)/\1 /')%b%{${reset_color}%}
 #"
 }
-
-#----------------------------------------------------------
-# 環境依存対応
-#----------------------------------------------------------
-#case ${OSTYPE} in
-#    darwin*)
-#        source ~/dotfiles/.zshrc.osx
-#        ;;
-#    linux*)
-#        ;;
-#esac
 
 #----------------------------------------------------------
 # その他
@@ -178,6 +167,15 @@ e_normal=`echo -e "\033[0;30m"`
 e_RED=`echo -e "\033[1;31m"`
 e_BLUE=`echo -e "\033[1;36m"`
 
+# brewを優先的に読み込まれる様にする
+PATH=/usr/local/bin:$PATH
+export PATH
+
+export EDITOR=/usr/local/bin/vim
+
+#----------------------------------------------------------
+# 便利関数
+#----------------------------------------------------------
 function make() {
 LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 }
