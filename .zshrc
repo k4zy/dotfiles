@@ -137,19 +137,30 @@ setopt transient_rprompt
 # プロンプト
 function precmd() {
 PROMPT="%{${fg[yellow]}%}%n%{${fg[red]}%} %~%{${reset_color}%}"
-st=`git status 2>/dev/null`
-if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
-    color=${fg[cyan]}
-elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
-    color=${fg[blue]}
-elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
-    color=${fg_bold[red]}
-else
-    color=${fg[red]}
-fi
+color=`get-branch-status`
 PROMPT+=" %{$color%}$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b%{${reset_color}%}
 "
 #"
+}
+
+function get-branch-status {
+    local res color
+        output=`git status --short 2> /dev/null`
+        if [ -z "$output" ]; then
+            res=':' # status Clean
+            color='%{'${fg[green]}'%}'
+        elif [[ $output =~ "[\n]?\?\? " ]]; then
+            res='?:' # Untracked
+            color='%{'${fg[yellow]}'%}'
+        elif [[ $output =~ "[\n]? M " ]]; then
+            res='M:' # Modified
+            color='%{'${fg[red]}'%}'
+        else
+            res='A:' # Added to commit
+            color='%{'${fg[cyan]}'%}'
+        fi
+        # echo ${color}${res}'%{'${reset_color}'%}'
+        echo ${color} # 色だけ返す
 }
 
 #----------------------------------------------------------
