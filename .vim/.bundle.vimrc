@@ -15,41 +15,28 @@ function! s:meet_neocomplete_requirements()
     return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
 endfunction
 
-NeoBundle 'Shougo/neocomplete.vim'
+
 
 NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'basyura/unite-rails'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'The-NERD-tree'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'hrp/EnhancedCommentify'
-
-NeoBundle 'vim-scripts/ShowMarks'
+NeoBundle 'ShowMarks'
 NeoBundle 'mattn/emmet-vim'
-
 NeoBundle 'Yggdroot/indentLine'
-
-" ctags
-NeoBundle 'vim-scripts/Source-Explorer-srcexpl.vim'
-NeoBundle 'trinity.vim'
 NeoBundle 'taglist.vim'
 NeoBundle 'majutsushi/tagbar'
-
-" others
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
-
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle  'rking/ag.vim'
-
 NeoBundle 'joker1007/vim-markdown-quote-syntax'
-
 NeoBundle 'osyo-manga/vim-over'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'jonathanfilip/vim-lucius'
 NeoBundle  'rails.vim'
 NeoBundle 'tpope/vim-endwise'
-NeoBundle 'basyura/unite-rails'
