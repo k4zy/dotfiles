@@ -28,7 +28,10 @@ NeoBundle 'hrp/EnhancedCommentify'
 NeoBundle 'vim-scripts/ShowMarks'
 NeoBundle 'mattn/emmet-vim'
 
-"NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 
 " ctags
 NeoBundle 'vim-scripts/Source-Explorer-srcexpl.vim'
