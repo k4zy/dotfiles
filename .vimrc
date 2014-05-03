@@ -1,5 +1,3 @@
-"pathの設定
-"source ~/dotfiles/.vim/.path.vimrc
 "bundle系の設定
 source ~/dotfiles/.vim/.bundle.vimrc
 " set .. 系の設定
@@ -77,13 +75,6 @@ autocmd ColorScheme * highlight Comment ctermfg=243 guifg=#757675
 
 set visualbell
 set noerrorbells
-
-
-set expandtab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set autoindent
 
 syntax on
 filetype plugin on

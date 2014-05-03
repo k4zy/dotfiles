@@ -1,7 +1,7 @@
 set number
 set expandtab
-set softtabstop=4
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
 set modelines=0
 set autoindent
 set smartindent
