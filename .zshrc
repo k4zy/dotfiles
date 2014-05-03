@@ -142,7 +142,6 @@ PROMPT="%{${fg[yellow]}%}%n%{${fg[red]}%} %~%{${reset_color}%}"
 color=`get-branch-status`
 PROMPT+=" %{$color%}$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b%{${reset_color}%}
 "
-#"
 }
 
 function get-branch-status {
@@ -161,7 +160,6 @@ function get-branch-status {
             res='A:' # Added to commit
             color='%{'${fg[cyan]}'%}'
         fi
-        # echo ${color}${res}'%{'${reset_color}'%}'
         echo ${color} # 色だけ返す
 }
 
