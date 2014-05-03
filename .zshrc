@@ -15,6 +15,8 @@ alias ll='ls -l'
 alias la='ls -A'
 alias refresh='exec $SHELL -l'
 alias iphone='open /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app'
+alias vim='/usr/local/bin/vim'
+alias help='vim ~/.help.md'
 
 #----------------------------------------------------------
 # 基本
