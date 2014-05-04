@@ -5,7 +5,6 @@ export LANG=ja_JP.UTF-8
 export JLESSCHARSET=japanese-sjis
 export OUTPUT_CHARSET=utf-8
 
-
 #----------------------------------------------------------
 # エイリアス
 #----------------------------------------------------------
@@ -17,6 +16,7 @@ alias refresh='exec $SHELL -l'
 alias iphone='open /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app'
 alias vim='/usr/local/bin/vim'
 alias help='vim ~/.help.md'
+alias epath="echo $PATH | tr : '\012'"
 
 #----------------------------------------------------------
 # 基本
@@ -160,7 +160,7 @@ function get-branch-status {
             res='A:' # Added to commit
             color='%{'${fg[cyan]}'%}'
         fi
-        echo ${color} # 色だけ返す
+        echo ${color}
 }
 
 #----------------------------------------------------------
@@ -178,11 +178,18 @@ e_normal=`echo -e "\033[0;30m"`
 e_RED=`echo -e "\033[1;31m"`
 e_BLUE=`echo -e "\033[1;36m"`
 
-# brewを優先的に読み込まれる様にする
-PATH=/usr/local/bin:$PATH
-export PATH
+# $EDITORの設定
+if [ -s /usr/local/bin/vim ]; then
+  export EDITOR=/usr/local/bin/vim
+else
+  export EDITOR=/usr/bin/vim
+fi
 
-export EDITOR=/usr/local/bin/vim
+#android系のpath
+export ANDROID_HOME=/Applications/Android\ Studio.app/sdk
+PATH=$PATH:/Applications/Android\ Studio.app/sdk/platform-tools/:/Applications/Android\ Studio.app/sdk/tools
+export JAVA_HOME=/Library/Java/Home
+PATH=$JAVA_HOME/bin:$PATH
 
 #----------------------------------------------------------
 # 便利関数
@@ -191,5 +198,4 @@ function make() {
 LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 }
 function mk () { mkdir -p "$@" && eval cd "\"\$$#\""; }
-function hs () { history-all | ack  "$@" }
-
+function hs () { history-all | grep  "$@" }
