@@ -1,4 +1,3 @@
-
 "esc２回でハイライト解除
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
 " ページ送り
@@ -11,11 +10,26 @@ map <C-e> <End>
 
 map  m vit
 
+let mapleader = "'"
+
 "Unite用の設定
-"nnoremap \o :<C-u>Unite  file <CR>
-nnoremap \o :<C-u>Unite file_rec/async<CR>
-nnoremap \g :<C-u>Unite grep:.<CR>
-"nnoremap \p :<C-u>! echo % | pbcopy <CR>
+nnoremap <leader>o :<C-u>Unite file_rec/async<CR>
+nnoremap <leader>g :<C-u>Unite grep:.<CR>
+
+"alias Rspec
+"let g:neorspec_command = "Dispatch rspec -fd  {spec}"
+nnoremap <leader>ra :<C-U>RSpecNearest<CR>
+nnoremap <leader>rn :<C-U>RSpecAll<CR>
+
+nnoremap <leader>re :<C-U>source ~/.vimrc<CR>
+
+"alias OverCommandLine
+nnoremap <leader>c :<C-U>OverCommandLine<CR>
+
+"alias fugitive
+nnoremap <leader>gs :<C-U>Gstatus<CR>
+nnoremap <leader>gd :<C-U>Gdiff<CR>
+
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts = '--nocolor --nogroup'
 let g:unite_source_grep_recursive_opt = ''
@@ -56,4 +70,3 @@ smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<P
 if has('conceal')
  set conceallevel=2 concealcursor=i
 endif
-
