@@ -1,8 +1,6 @@
 "esc２回でハイライト解除
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
 " ページ送り
-"nmap <C-j> <C-f> 
-"nmap <C-k> <C-b> 
 imap <C-a> <Home>
 imap <C-e> <End>
 map <C-a> <Home>
@@ -13,8 +11,12 @@ map  m vit
 let mapleader = "'"
 
 "Unite用の設定
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+let g:unite_source_grep_recursive_opt = ''
+let g:unite_source_grep_max_candidates = 200
+nnoremap <leader>b :<C-u>Unite  buffer<CR>
 nnoremap <leader>o :<C-u>Unite file_rec/async<CR>
-nnoremap <leader>g :<C-u>Unite grep:.<CR>
 
 "alias Rspec
 "let g:neorspec_command = "Dispatch rspec -fd  {spec}"
@@ -30,11 +32,6 @@ nnoremap <leader>c :<C-U>OverCommandLine<CR>
 nnoremap <leader>gs :<C-U>Gstatus<CR>
 nnoremap <leader>gd :<C-U>Gdiff<CR>
 
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nocolor --nogroup'
-let g:unite_source_grep_recursive_opt = ''
-let g:unite_source_grep_max_candidates = 200
-nnoremap \b :<C-u>Unite  buffer<CR>
 
 "taglist
 nmap <Leader>a :TagbarToggle<CR>
@@ -44,9 +41,7 @@ cmap w!! w !sudo tee > /dev/null %
 
 
 "VimShellを起動する
-nnoremap \sh :<C-u>VimShell<CR>
-"quickrun 
-nmap <Leader>r <plug>(quickrun)
+nnoremap <leader>sh :<C-u>VimShell<CR>
 
 nmap <Tab>      gt
 nmap <S-Tab>    gT

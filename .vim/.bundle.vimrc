@@ -19,7 +19,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'The-NERD-tree'
 NeoBundle 'ShowMarks'
-NeoBundle  'rails.vim'
+NeoBundle 'rails.vim'
 NeoBundle 'taglist.vim'
 NeoBundle 'copypath.vim'
 
