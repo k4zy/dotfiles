@@ -26,11 +26,15 @@ nnoremap <leader>rn :<C-U>RSpecAll<CR>
 nnoremap <leader>re :<C-U>source ~/.vimrc<CR>
 
 "alias OverCommandLine
-nnoremap <leader>c :<C-U>OverCommandLine<CR>
+nnoremap <leader>cn :<C-U>OverCommandLine<CR>
 
 "alias fugitive
 nnoremap <leader>gs :<C-U>Gstatus<CR>
 nnoremap <leader>gd :<C-U>Gdiff<CR>
+
+" copy file_path
+nnoremap <leader>cc :<C-U>CopyFileName<CR>
+
 
 
 "taglist
