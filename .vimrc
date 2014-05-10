@@ -6,6 +6,7 @@ source ~/dotfiles/.vim/.shell.vimrc
 source ~/dotfiles/.vim/.rails.vimrc
 source ~/dotfiles/.vim/.alias.vimrc
 source ~/dotfiles/.vim/.showmarks.vimrc
+source ~/dotfiles/.vim/.tab.vimrc
 source ~/dotfiles/.vim/.others.vimrc
 
 syntax on
