@@ -191,6 +191,8 @@ export ANDROID_HOME=/Applications/Android\ Studio.app/sdk
 PATH=$PATH:/Applications/Android\ Studio.app/sdk/platform-tools/:/Applications/Android\ Studio.app/sdk/tools
 export JAVA_HOME=/Library/Java/Home
 PATH=$JAVA_HOME/bin:$PATH
+#powerline
+export PATH=~/Library/Python/2.7/bin:$PATH
 
 #----------------------------------------------------------
 # 便利関数
