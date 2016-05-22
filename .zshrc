@@ -1,9 +1,9 @@
-#fpath=(/usr/local/share/zsh-completions $fpath)
 # 文字コードの設定
 export LC_CTYPE=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 export JLESSCHARSET=japanese-sjis
 export OUTPUT_CHARSET=utf-8
+export PGDATA=/opt/brew/var/postgres
 
 #----------------------------------------------------------
 # エイリアス
@@ -13,11 +13,16 @@ alias ls='ls -hF'
 alias ll='ls -l'
 alias la='ls -A'
 alias refresh='exec $SHELL -l'
-alias iphone='open /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app'
-alias vim='/usr/local/bin/vim'
-alias help='vim ~/.help.md'
-alias task='vim ~/.task.md'
-alias epath="echo $PATH | tr : '\012'"
+alias gs='git status -s'
+alias gd='git diff'
+alias re='cd $(ghq list -p | peco)'
+alias gco='git checkout `git branch | peco | sed -e "s/^\*[ ]*//g"`'
+alias ip='ipconfig getifaddr en0'
+alias ai='find ./ -name "*.apk" | peco | xargs adbp install -r'
+alias au='adbp shell pm list package | sed -e s/package:// | peco | xargs adbp uninstall'
+alias refresh-adb='adb kill-server; adb start-server'
+alias aws='/Users/kazuki-yoshida/.pyenv/versions/3.5.0/bin/aws'
+alias gclean='git checkout master && git pull --rebase origin master && git branch --merged origin/master | grep -v "^\s*master" | grep -v "^*" | xargs git branch -D'
 
 #----------------------------------------------------------
 # 基本
@@ -120,24 +125,11 @@ setopt inc_append_history
 setopt hist_verify
 # 履歴検索機能のショートカット設定
 autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
-# インクリメンタルサーチの設定
-bindkey "^R" history-incremental-search-backward
-bindkey "^S" history-incremental-search-forward
-# 全履歴の一覧を出力する
 function history-all { history -E 1 }
 
 #----------------------------------------------------------
 # プロンプト表示関連
 #----------------------------------------------------------
-# 右側に時間を表示する
-# RPROMPT="%T"
-# 右側まで入力が来ら時間を消す
-setopt transient_rprompt
-# プロンプト
 function precmd() {
 PROMPT="%{${fg[yellow]}%}%n%{${fg[red]}%} %~%{${reset_color}%}"
 color=`get-branch-status`
@@ -174,31 +166,51 @@ setopt no_checkjobs
 # バックグラウンドジョブが終了したら(プロンプトの表示を待たずに)すぐに知らせる
 setopt notify
 
-# makeのエラー出力に色付け
-e_normal=`echo -e "\033[0;30m"`
-e_RED=`echo -e "\033[1;31m"`
-e_BLUE=`echo -e "\033[1;36m"`
-
 # $EDITORの設定
-if [ -s /usr/local/bin/vim ]; then
-  export EDITOR=/usr/local/bin/vim
+if [ -s $(brew --prefix)/bin/vim ]; then
+  export EDITOR=$(brew --prefix)/bin/vim
 else
   export EDITOR=/usr/bin/vim
 fi
 
-#android系のpath
-export ANDROID_HOME=/Applications/Android\ Studio.app/sdk
-PATH=$PATH:/Applications/Android\ Studio.app/sdk/platform-tools/:/Applications/Android\ Studio.app/sdk/tools
-export JAVA_HOME=/Library/Java/Home
-PATH=$JAVA_HOME/bin:$PATH
-#powerline
-export PATH=~/Library/Python/2.7/bin:$PATH
-
 #----------------------------------------------------------
 # 便利関数
 #----------------------------------------------------------
-function make() {
-LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
-}
 function mk () { mkdir -p "$@" && eval cd "\"\$$#\""; }
-function hs () { history-all | grep  "$@" }
+
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+
+#----------------------------------------------------------
+# 開発で利用するPATH
+#----------------------------------------------------------
+ANDROID_HOME=~/Library/Android/sdk
+export JAVA_HOME=`/usr/libexec/java_home`
+export JDK_HOME=$JAVA_HOME
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+JAVA8_HOME=`/usr/libexec/java_home -v "1.8" -F`
+if [ $? -eq 0 ]; then
+    export JAVA8_HOME
+fi
+PATH=$ANDROID_HOME/platform-tools/:$ANDROID_HOME/tools:$PATH
+PATH=$JAVA_HOME/bin:$PATH
+PATH=~/Library/Python/2.7/bin:$PATH #for powerline
+PATH=/opt/brew/heroku/bin:$PATH
+export GOPATH=$HOME
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+eval "$(direnv hook zsh)"

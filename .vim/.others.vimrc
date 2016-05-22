@@ -26,6 +26,8 @@ au BufRead,BufNewFile *.{md,mkd} set ft=markdown
 " change comment color scheme
 autocmd ColorScheme * highlight Comment ctermfg=243 guifg=#757675
 
+set colorcolumn=80
+
 "set visualbell
 "set noerrorbells
 set visualbell t_vb= 

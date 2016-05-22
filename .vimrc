@@ -12,3 +12,5 @@ source ~/dotfiles/.vim/.others.vimrc
 syntax on
 filetype plugin on
 filetype indent on
+set backupskip=/tmp/*,/private/tmp/*
+
