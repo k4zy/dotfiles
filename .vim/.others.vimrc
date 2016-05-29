@@ -16,9 +16,6 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 set t_Co=256
 
-noremap ; :
-:command! W :w
-
 set backspace=indent,eol,start
 
 au BufRead,BufNewFile *.{md,mkd} set ft=markdown
@@ -26,7 +23,7 @@ au BufRead,BufNewFile *.{md,mkd} set ft=markdown
 " change comment color scheme
 autocmd ColorScheme * highlight Comment ctermfg=243 guifg=#757675
 
-set colorcolumn=80
+set colorcolumn=120
 
 "set visualbell
 "set noerrorbells

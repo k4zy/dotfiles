@@ -1,37 +1,40 @@
 filetype off
-if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-    call neobundle#rc(expand('~/.vim/bundle/'))
+if &compatible
+  set nocompatible
+endif
+set runtimepath^=~/.vim//repos/github.com/Shougo/dein.vim
+
+call dein#begin(expand('~/.cache/dein'))
+
+call dein#add('Shougo/dein.vim')
+call dein#add('The-NERD-tree')
+call dein#add('ShowMarks')
+call dein#add('taglist.vim')
+call dein#add('copypath.vim')
+call dein#add('Shougo/neocomplete.vim')
+call dein#add('Shougo/unite.vim')
+call dein#add('hrp/EnhancedCommentify')
+call dein#add('mattn/emmet-vim')
+call dein#add('terryma/vim-multiple-cursors')
+call dein#add('osyo-manga/vim-over')
+call dein#add('Yggdroot/indentLine')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
+call dein#add('majutsushi/tagbar')
+call dein#add('joker1007/vim-markdown-quote-syntax')
+call dein#add('tpope/vim-endwise')
+call dein#add('tfnico/vim-gradle')
+call dein#add('ekalinin/Dockerfile.vim')
+call dein#add('udalov/kotlin-vim')
+call dein#add('scrooloose/syntastic')
+call dein#add('vim-scripts/ShowMarks')
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+
+if dein#check_install()
+  call dein#install()
 endif
 
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+call dein#end()
 
-function! s:meet_neocomplete_requirements()
-    return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
-endfunction
+filetype plugin indent on
 
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-NeoBundle 'The-NERD-tree'
-NeoBundle 'ShowMarks'
-NeoBundle 'taglist.vim'
-NeoBundle 'copypath.vim'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'hrp/EnhancedCommentify'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'osyo-manga/vim-over'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'joker1007/vim-markdown-quote-syntax'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tfnico/vim-gradle'
-NeoBundle 'ekalinin/Dockerfile.vim'
-NeoBundle 'udalov/kotlin-vim'
