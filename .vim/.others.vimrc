@@ -17,6 +17,7 @@ let g:airline_theme='powerlineish'
 set t_Co=256
 
 set backspace=indent,eol,start
+noremap ; :
 
 au BufRead,BufNewFile *.{md,mkd} set ft=markdown
 

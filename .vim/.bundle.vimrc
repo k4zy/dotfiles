@@ -6,6 +6,7 @@ set runtimepath^=~/.vim//repos/github.com/Shougo/dein.vim
 
 call dein#begin(expand('~/.cache/dein'))
 
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('Shougo/dein.vim')
 call dein#add('The-NERD-tree')
 call dein#add('ShowMarks')
@@ -27,8 +28,7 @@ call dein#add('tfnico/vim-gradle')
 call dein#add('ekalinin/Dockerfile.vim')
 call dein#add('udalov/kotlin-vim')
 call dein#add('scrooloose/syntastic')
-call dein#add('vim-scripts/ShowMarks')
-call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+call dein#add('jacquesbh/vim-showmarks')
 
 if dein#check_install()
   call dein#install()
