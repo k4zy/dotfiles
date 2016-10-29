@@ -10,17 +10,17 @@ homebrew_cask_package_names:
   - google-japanese-ime
   - iterm2
   - sequel-pro
-  - slack
   - vlc
   - coteditor
   - bitbar
   - charles
   - couleurs
-  - intellij-idea
-  - rubymine
-  - android-studio
   - postico
-  # - jasper
+    #- slack
+    #- intellij-idea
+    #- rubymine
+    #- android-studio
+    #- jasper
 man_package_names:
   - 417375580 # BetterSnapTool
   - 443987910 # 1Password
