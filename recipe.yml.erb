@@ -40,9 +40,13 @@ resources:
   - type: command
     check_script: "finger -l | grep -E 'Shell: /bin/zsh$'"
     script: sudo chsh -s /bin/zsh <%= ENV["USER"] %>
+  - type: git
+    repository: https://github.com/kazy1991/dotfiles.git
+    path: /Users/<%= ENV["USER"] %>/dotfiles
+    status: updated  
   <%- dotfiles.each do |path| -%>
   - type: symlink
-    destination: /Users/<%= ENV["USER"] %>/src/github.com/r7kamura/dotfiles/linked/<%= path %>
+    destination: /Users/<%= ENV["USER"] %>/dotfiles/linked/<%= path %>
     source: /Users/<%= ENV["USER"] %>/<%= path %>
   <%- end -%>
 handlers:
