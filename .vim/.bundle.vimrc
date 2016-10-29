@@ -29,6 +29,7 @@ call dein#add('ekalinin/Dockerfile.vim')
 call dein#add('udalov/kotlin-vim')
 call dein#add('scrooloose/syntastic')
 call dein#add('jacquesbh/vim-showmarks')
+call dein#add('tpope/vim-fugitive')
 
 if dein#check_install()
   call dein#install()

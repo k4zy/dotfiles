@@ -1,0 +1,63 @@
+dotfiles:
+  - .atom/keymap.cson
+  - .gemrc
+  - .gitconfig
+  - .gitexcludes
+  - .gitignore
+  - .inputrc
+  - .pryrc
+  - .rbenv/default-gems
+  - .rspec
+  - .tigrc
+  - .tmux.conf
+  - .zsh
+  - .zshrc
+homebrew_cask_package_names:
+  - atom
+  - dropbox
+  - firefox
+  - google-chrome
+  - google-japanese-ime
+  - iterm2
+  - karabiner
+  - sequel-pro
+  - slack
+  - vlc
+  - coteditor
+  - bitbar
+  - charles
+  - couleurs
+  - intellij-idea
+  - rubymine
+  - android-studio
+  - postico
+  # - jasper
+man_package_names:
+  - 417375580 # BetterSnapTool
+  - 443987910 # 1Password
+
+homebrew_package_names:
+  - caskroom/cask/brew-cask
+  - git
+  - motemen/ghq/ghq
+  - jq
+  - peco
+  - mysql
+  - postgresql
+  - nodebrew
+  - openssl
+  - readline
+  - rbenv
+  - rbenv-default-gems
+  - ruby-build
+  - redis
+  - tig
+  - tree
+  - lua
+  - macvim
+  - zsh
+  - mas
+  - wget
+  - gibo
+  - ricty
+  - envchain

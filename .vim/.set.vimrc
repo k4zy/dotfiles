@@ -11,5 +11,6 @@ set listchars=tab:>-
 set nobackup
 set noswapfile
 set nocompatible
+let g:syntastic_check_on_open = 0
 vnoremap <silent> > >gv
 vnoremap <silent> < <gv
