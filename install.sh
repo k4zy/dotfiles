@@ -40,7 +40,7 @@ sudo gem install bundler > /dev/null
 sudo bundle install > /dev/null
 
 # serverkit applyを実行
-sudo bundle exec serverkit apply recipe.yml.erb --variables=variables.yml
+bundle exec serverkit apply recipe.yml.erb --variables=variables.yml
 
 # 元のパスに戻る
 popd > /dev/null

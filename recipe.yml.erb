@@ -40,6 +40,11 @@ resources:
   - type: command
     check_script: "finger -l | grep -E 'Shell: /bin/zsh$'"
     script: sudo chsh -s /bin/zsh <%= ENV["USER"] %>
+  <%- dotfiles.each do |path| -%>
+  - type: symlink
+    destination: /Users/<%= ENV["USER"] %>/src/github.com/r7kamura/dotfiles/linked/<%= path %>
+    source: /Users/<%= ENV["USER"] %>/<%= path %>
+  <%- end -%>
 handlers:
   - id: restart_dock
     type: command
