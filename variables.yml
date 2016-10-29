@@ -1,17 +1,7 @@
 dotfiles:
-  - .atom/keymap.cson
-  - .gemrc
-  - .gitconfig
-  - .gitexcludes
-  - .gitignore
-  - .inputrc
-  - .pryrc
-  - .rbenv/default-gems
-  - .rspec
-  - .tigrc
-  - .tmux.conf
-  - .zsh
   - .zshrc
+  - .vimrc
+  - .gvimrc
 homebrew_cask_package_names:
   - atom
   - dropbox
@@ -19,7 +9,6 @@ homebrew_cask_package_names:
   - google-chrome
   - google-japanese-ime
   - iterm2
-  - karabiner
   - sequel-pro
   - slack
   - vlc
@@ -48,9 +37,7 @@ homebrew_package_names:
   - openssl
   - readline
   - rbenv
-  - rbenv-default-gems
   - ruby-build
-  - redis
   - tig
   - tree
   - lua
@@ -59,5 +46,4 @@ homebrew_package_names:
   - mas
   - wget
   - gibo
-  - ricty
   - envchain
