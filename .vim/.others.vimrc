@@ -20,6 +20,8 @@ set backspace=indent,eol,start
 noremap ; :
 
 au BufRead,BufNewFile *.{md,mkd} set ft=markdown
+au BufRead,BufNewFile *.schema set filetype=ruby
+
 
 " change comment color scheme
 autocmd ColorScheme * highlight Comment ctermfg=243 guifg=#757675
