@@ -211,6 +211,7 @@ PATH=$JAVA_HOME/bin:$PATH
 PATH=~/Library/Python/2.7/bin:$PATH #for powerline
 PATH=/opt/brew/heroku/bin:$PATH
 export GOPATH=$HOME
+export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 eval "$(direnv hook zsh)"

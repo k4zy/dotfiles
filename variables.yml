@@ -53,3 +53,5 @@ homebrew_package_names:
   - envchain
   - sanemat/font/ricty
   - direnv
+  - go
+  - the_silver_searcher
