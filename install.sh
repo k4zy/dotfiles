@@ -35,6 +35,10 @@ if [ "$?" -ne 0 ]; then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+#dein.vimを入れる
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+sh ./installer.sh ~/.vim
+
 # serverkitを入れる
 sudo gem install bundler > /dev/null
 sudo bundle install > /dev/null
