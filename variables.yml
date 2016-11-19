@@ -16,6 +16,7 @@ homebrew_cask_package_names:
   - charles
   - couleurs
   - postico
+  - java
     #- slack
     #- intellij-idea
     #- rubymine
@@ -50,3 +51,5 @@ homebrew_package_names:
   - wget
   - gibo
   - envchain
+  - sanemat/font/ricty
+  - direnv
