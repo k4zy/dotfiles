@@ -17,6 +17,7 @@ homebrew_cask_package_names:
   - couleurs
   - postico
   - java
+  - sourcetree
     #- slack
     #- intellij-idea
     #- rubymine
