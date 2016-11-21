@@ -21,7 +21,8 @@ alias ip='ipconfig getifaddr en0'
 alias ai='find ./ -name "*.apk" | peco | xargs adbp install -r'
 alias au='adbp shell pm list package | sed -e s/package:// | peco | xargs adbp uninstall'
 alias refresh-adb='adb kill-server; adb start-server'
-alias aws='/Users/kazuki-yoshida/.pyenv/versions/3.5.0/bin/aws'
+alias aws='~/.pyenv/versions/3.5.0/bin/aws'
+alias adbp='adb-peco'
 alias gclean='git checkout master && git pull --rebase origin master && git branch --merged origin/master | grep -v "^\s*master" | grep -v "^*" | xargs git branch -D'
 
 #----------------------------------------------------------
