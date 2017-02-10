@@ -23,6 +23,7 @@ alias au='adbp shell pm list package | sed -e s/package:// | peco | xargs adb-pe
 alias refresh-adb='adb kill-server; adb start-server'
 alias aws='~/.pyenv/versions/3.5.0/bin/aws'
 alias adbp='adb-peco'
+alias g='git'
 alias gclean='git checkout master && git pull --rebase origin master && git branch --merged origin/master | grep -v "^\s*master" | grep -v "^*" | xargs git branch -D'
 
 #----------------------------------------------------------
