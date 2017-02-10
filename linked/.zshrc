@@ -208,7 +208,7 @@ JAVA8_HOME=`/usr/libexec/java_home -v "1.8" -F`
 if [ $? -eq 0 ]; then
     export JAVA8_HOME
 fi
-PATH=$ANDROID_HOME/platform-tools/:$ANDROID_HOME/tools:$PATH
+PATH=~/.rbenv/shims:$ANDROID_HOME/platform-tools/:$ANDROID_HOME/tools:$PATH
 PATH=$JAVA_HOME/bin:$PATH
 PATH=~/Library/Python/2.7/bin:$PATH #for powerline
 PATH=/opt/brew/heroku/bin:$PATH
