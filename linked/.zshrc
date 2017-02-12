@@ -196,6 +196,10 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
+function remote-checkout() {
+  git fetch $1 $2 && git checkout -b $2 $1/$2
+}
+
 #----------------------------------------------------------
 # 開発で利用するPATH
 #----------------------------------------------------------
