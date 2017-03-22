@@ -25,6 +25,9 @@ alias aws='~/.pyenv/versions/3.5.0/bin/aws'
 alias adbp='adb-peco'
 alias g='git'
 alias gclean='git checkout master && git pull --rebase origin master && git branch --merged origin/master | grep -v "^\s*master" | grep -v "^*" | xargs git branch -D'
+alias remote-push='git push kazuki-yoshida `git rev-parse --abbrev-ref HEAD`'
+alias emu='emulator -list-avds | peco | xargs ~/Library/Android/sdk/tools/emulator -avd'
+alias emu_with_proxy='emulator -list-avds | peco | xargs ~/Library/Android/sdk/tools/emulator -http-proxy http://`ipconfig getifaddr en0`:8080 -avd'
 
 #----------------------------------------------------------
 # 基本
