@@ -27,8 +27,7 @@ alias g='git'
 alias gclean='git checkout master && git pull --rebase origin master && git branch --merged origin/master | grep -v "^\s*master" | grep -v "^*" | xargs git branch -D'
 alias remote-push='git push kazuki-yoshida `git rev-parse --abbrev-ref HEAD`'
 alias origin-push='git push origin `git rev-parse --abbrev-ref HEAD`'
-alias emu='emulator -list-avds | peco | xargs ~/Library/Android/sdk/tools/emulator -avd'
-alias emu_with_proxy='emulator -list-avds | peco | xargs ~/Library/Android/sdk/tools/emulator -http-proxy http://`ipconfig getifaddr en0`:8080 -avd'
+alias emu='emulator -list-avds | peco | xargs ~/Library/Android/sdk/emulator/emulator -avd'
 
 #----------------------------------------------------------
 # 基本
@@ -220,7 +219,7 @@ JAVA8_HOME=`/usr/libexec/java_home -v "1.8" -F`
 if [ $? -eq 0 ]; then
     export JAVA8_HOME
 fi
-PATH=~/.rbenv/shims:$ANDROID_HOME/platform-tools/:$ANDROID_HOME/tools:$PATH
+PATH=~/.rbenv/shims:$ANDROID_HOME/platform-tools/:$ANDROID_HOME/tools/bin/:$ANDROID_HOME/tools:$PATH
 PATH=$JAVA_HOME/bin:$PATH
 PATH=~/Library/Python/2.7/bin:$PATH #for powerline
 PATH=/opt/brew/heroku/bin:$PATH
