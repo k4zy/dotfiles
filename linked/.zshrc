@@ -21,13 +21,14 @@ alias ip='ipconfig getifaddr en0'
 alias ai='find ./ -name "*.apk" | peco | xargs adb-peco install -r'
 alias au='adbp shell pm list package | sed -e s/package:// | peco | xargs adb-peco uninstall'
 alias refresh-adb='adb kill-server; adb start-server'
-alias aws='~/.pyenv/versions/3.5.0/bin/aws'
 alias adbp='adb-peco'
 alias g='git'
 alias gclean='git checkout master && git pull --rebase origin master && git branch --merged origin/master | grep -v "^\s*master" | grep -v "^*" | xargs git branch -D'
+alias gback='git reset HEAD~'
 alias remote-push='git push kazuki-yoshida `git rev-parse --abbrev-ref HEAD`'
 alias origin-push='git push origin `git rev-parse --abbrev-ref HEAD`'
 alias emu='emulator -list-avds | peco | xargs ~/Library/Android/sdk/emulator/emulator -avd'
+alias yrn='yarn run $(package_json_scripts | peco)'
 
 #----------------------------------------------------------
 # 基本
@@ -205,6 +206,10 @@ function remote-checkout() {
 
 function pero() {
   ag "$@" . | peco --exec 'awk -F : '"'"'{print "+" $2 " " $1}'"'"' | xargs less -R -N '
+}
+
+function package_json_scripts () {
+  cat package.json | jq -r '.scripts | keys[]'
 }
 
 #----------------------------------------------------------
