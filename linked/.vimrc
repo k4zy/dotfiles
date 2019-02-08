@@ -9,5 +9,6 @@ source ~/dotfiles/.vim/.nerd.vimrc
 syntax on
 filetype plugin on
 filetype indent on
+let g:vim_json_syntax_conceal = 0
 set backupskip=/tmp/*,/private/tmp/*
 

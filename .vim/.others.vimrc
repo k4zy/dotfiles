@@ -4,6 +4,7 @@ let g:syntastic_auto_loc_list=2
 let g:NERDChristmasTree = 1
 let g:NERDTreeSplitVertical=1
 
+set conceallevel=0
 set mouse=a
 set guioptions+=a
 

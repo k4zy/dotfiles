@@ -32,6 +32,7 @@ call dein#add('jacquesbh/vim-showmarks')
 call dein#add('tpope/vim-fugitive')
 call dein#add('chriskempson/vim-tomorrow-theme')
 call dein#add('vim-syntastic/syntastic')
+call dein#add('elzr/vim-json')
 
 if dein#check_install()
   call dein#install()

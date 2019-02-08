@@ -27,7 +27,7 @@ alias gclean='git checkout master && git pull --rebase origin master && git bran
 alias gback='git reset HEAD~'
 alias remote-push='git push kazuki-yoshida `git rev-parse --abbrev-ref HEAD`'
 alias origin-push='git push origin `git rev-parse --abbrev-ref HEAD`'
-alias emu='emulator -list-avds | peco | xargs ~/Library/Android/sdk/emulator/emulator -avd'
+alias emu='~/Library/Android/sdk/emulator/emulator -list-avds | peco | xargs ~/Library/Android/sdk/emulator/emulator -avd'
 alias yrn='yarn run $(package_json_scripts | peco)'
 
 #----------------------------------------------------------
@@ -231,5 +231,6 @@ PATH=/opt/brew/heroku/bin:$PATH
 export GOPATH=$HOME
 export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-
+export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.cargo/env:$PATH
 eval "$(direnv hook zsh)"
