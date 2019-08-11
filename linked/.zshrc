@@ -218,6 +218,7 @@ function package_json_scripts () {
 ANDROID_HOME=~/Library/Android/sdk
 #export JAVA_HOME=`/usr/libexec/java_home`
 export ANDROID_HOME=~/Library/Android/sdk
+export ANDROID_NDK_HOME=~/Library/Android/sdk/ndk-bundle
 #export JDK_HOME=$JAVA_HOME
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 JAVA8_HOME=`/usr/libexec/java_home -v "1.8" -F`
