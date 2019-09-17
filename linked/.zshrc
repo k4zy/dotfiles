@@ -236,4 +236,3 @@ export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.cargo/env:$PATH
 #export PATH=/opt/brew/opt/coreutils/libexec/gnubin:$PATH
 #export BUILDIFIER_BIN=$GOPATH/bin/buildifier
-eval "$(direnv hook zsh)"
