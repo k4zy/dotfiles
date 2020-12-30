@@ -9,6 +9,7 @@ set cindent
 set list!
 set listchars=tab:>-
 set nobackup
+set noundofile
 set noswapfile
 set nocompatible
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [] }

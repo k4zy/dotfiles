@@ -28,7 +28,6 @@ alias gback='git reset HEAD~'
 alias remote-push='git push kazuki-yoshida `git rev-parse --abbrev-ref HEAD`'
 alias origin-push='git push origin `git rev-parse --abbrev-ref HEAD`'
 alias emu='~/Library/Android/sdk/emulator/emulator -list-avds | peco | xargs ~/Library/Android/sdk/emulator/emulator -avd'
-alias yrn='yarn run $(package_json_scripts | peco)'
 
 #----------------------------------------------------------
 # 基本
@@ -204,29 +203,21 @@ function remote-checkout() {
   git fetch $1 $2 && git checkout -b $2 $1/$2
 }
 
-function pero() {
-  ag "$@" . | peco --exec 'awk -F : '"'"'{print "+" $2 " " $1}'"'"' | xargs less -R -N '
-}
-
-function package_json_scripts () {
-  cat package.json | jq -r '.scripts | keys[]'
-}
-
 #----------------------------------------------------------
 # 開発で利用するPATH
 #----------------------------------------------------------
 ANDROID_HOME=~/Library/Android/sdk
 #export JAVA_HOME=`/usr/libexec/java_home`
 export ANDROID_HOME=~/Library/Android/sdk
-export ANDROID_NDK_HOME=~/Library/Android/sdk/ndk-bundle
 #export JDK_HOME=$JAVA_HOME
-export GROOVY_HOME=/usr/local/opt/groovy/libexec
+#export GROOVY_HOME=/usr/local/opt/groovy/libexec
 JAVA8_HOME=`/usr/libexec/java_home -v "1.8" -F`
 if [ $? -eq 0 ]; then
     export JAVA8_HOME
 fi
+
 PATH=~/.rbenv/shims:$ANDROID_HOME/platform-tools/:$ANDROID_HOME/tools/bin/:$ANDROID_HOME/tools:$PATH
-PATH=$JAVA_HOME/bin:$PATH
+#PATH=$JAVA_HOME/bin:$PATH
 PATH=~/Library/Python/2.7/bin:$PATH #for powerline
 PATH=/opt/brew/heroku/bin:$PATH
 export GOPATH=$HOME
@@ -236,3 +227,4 @@ export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.cargo/env:$PATH
 #export PATH=/opt/brew/opt/coreutils/libexec/gnubin:$PATH
 #export BUILDIFIER_BIN=$GOPATH/bin/buildifier
+export GHQ_ROOT='/Users/kazuki-yoshida/.ghq/'
