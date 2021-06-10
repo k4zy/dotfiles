@@ -28,6 +28,7 @@ alias gback='git reset HEAD~'
 alias remote-push='git push kazuki-yoshida `git rev-parse --abbrev-ref HEAD`'
 alias origin-push='git push origin `git rev-parse --abbrev-ref HEAD`'
 alias emu='~/Library/Android/sdk/emulator/emulator -list-avds | peco | xargs ~/Library/Android/sdk/emulator/emulator -avd'
+alias e='envchain aws-cookpad'
 
 #----------------------------------------------------------
 # 基本
@@ -206,18 +207,10 @@ function remote-checkout() {
 #----------------------------------------------------------
 # 開発で利用するPATH
 #----------------------------------------------------------
-ANDROID_HOME=~/Library/Android/sdk
-#export JAVA_HOME=`/usr/libexec/java_home`
+export ANDROID_SDK_ROOT=~/Library/Android/sdk
 export ANDROID_HOME=~/Library/Android/sdk
-#export JDK_HOME=$JAVA_HOME
-#export GROOVY_HOME=/usr/local/opt/groovy/libexec
-JAVA8_HOME=`/usr/libexec/java_home -v "1.8" -F`
-if [ $? -eq 0 ]; then
-    export JAVA8_HOME
-fi
 
 PATH=~/.rbenv/shims:$ANDROID_HOME/platform-tools/:$ANDROID_HOME/tools/bin/:$ANDROID_HOME/tools:$PATH
-#PATH=$JAVA_HOME/bin:$PATH
 PATH=~/Library/Python/2.7/bin:$PATH #for powerline
 PATH=/opt/brew/heroku/bin:$PATH
 export GOPATH=$HOME
@@ -225,6 +218,4 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.cargo/env:$PATH
-#export PATH=/opt/brew/opt/coreutils/libexec/gnubin:$PATH
-#export BUILDIFIER_BIN=$GOPATH/bin/buildifier
 export GHQ_ROOT='/Users/kazuki-yoshida/.ghq/'
