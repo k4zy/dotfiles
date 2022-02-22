@@ -56,6 +56,12 @@ export LS_COLORS='di=01;36'
 #----------------------------------------------------------
 # 補完関連
 #----------------------------------------------------------
+
+# brewのpath
+if [ -e /opt/homebrew/share/zsh/site-functions ]; then
+    fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+fi
+
 # 補完機能を強化
 autoload -Uz compinit; compinit
 # URLを自動エスケープ
@@ -219,3 +225,9 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.cargo/env:$PATH
 export GHQ_ROOT='/Users/kazuki-yoshida/.ghq/'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kazuki-yoshida/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kazuki-yoshida/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kazuki-yoshida/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kazuki-yoshida/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
