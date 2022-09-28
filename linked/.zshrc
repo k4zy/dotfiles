@@ -19,16 +19,9 @@ alias re='cd $(ghq list -p | peco)'
 alias gco='git checkout `git branch | peco | sed -e "s/^\*[ ]*//g"`'
 alias ip='ipconfig getifaddr en0'
 alias ai='find ./ -name "*.apk" | peco | xargs adb-peco install -r'
-alias au='adbp shell pm list package | sed -e s/package:// | peco | xargs adb-peco uninstall'
-alias refresh-adb='adb kill-server; adb start-server'
-alias adbp='adb-peco'
-alias g='git'
 alias gclean='git checkout master && git pull --rebase origin master && git branch --merged origin/master | grep -v "^\s*master" | grep -v "^*" | xargs git branch -D'
-alias gback='git reset HEAD~'
 alias remote-push='git push kazuki-yoshida `git rev-parse --abbrev-ref HEAD`'
 alias origin-push='git push origin `git rev-parse --abbrev-ref HEAD`'
-alias emu='~/Library/Android/sdk/emulator/emulator -list-avds | peco | xargs ~/Library/Android/sdk/emulator/emulator -avd'
-alias e='envchain aws-cookpad'
 
 #----------------------------------------------------------
 # 基本
@@ -57,11 +50,6 @@ export LS_COLORS='di=01;36'
 # 補完関連
 #----------------------------------------------------------
 
-# brewのpath
-if [ -e /opt/homebrew/share/zsh/site-functions ]; then
-    fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
-fi
-
 # 補完機能を強化
 autoload -Uz compinit; compinit
 # URLを自動エスケープ
@@ -88,10 +76,6 @@ setopt list_packed
 setopt list_types
 # 最後のスラッシュを自動的に削除しない
 setopt noautoremoveslash
-# スペルチェック
-setopt correct
-# killコマンドでプロセスを補完
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'
 
 #----------------------------------------------------------
 # 移動関連
@@ -138,35 +122,6 @@ setopt hist_verify
 # 履歴検索機能のショートカット設定
 autoload history-search-end
 function history-all { history -E 1 }
-
-#----------------------------------------------------------
-# プロンプト表示関連
-#----------------------------------------------------------
-function precmd() {
-PROMPT="%{${fg[yellow]}%}%n%{${fg[red]}%} %~%{${reset_color}%}"
-color=`get-branch-status`
-PROMPT+=" %{$color%}$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b%{${reset_color}%}
-"
-}
-
-function get-branch-status {
-    local res color
-        output=`git status --short 2> /dev/null`
-        if [ -z "$output" ]; then
-            res=':' # status Clean
-            color='%{'${fg[green]}'%}'
-        elif [[ $output =~ "[\n]?\?\? " ]]; then
-            res='?:' # Untracked
-            color='%{'${fg[yellow]}'%}'
-        elif [[ $output =~ "[\n]? M " ]]; then
-            res='M:' # Modified
-            color='%{'${fg[red]}'%}'
-        else
-            res='A:' # Added to commit
-            color='%{'${fg[cyan]}'%}'
-        fi
-        echo ${color}
-}
 
 #----------------------------------------------------------
 # その他
@@ -217,13 +172,6 @@ export ANDROID_SDK_ROOT=~/Library/Android/sdk
 export ANDROID_HOME=~/Library/Android/sdk
 
 PATH=~/.rbenv/shims:$ANDROID_HOME/platform-tools/:$ANDROID_HOME/tools/bin/:$ANDROID_HOME/tools:$PATH
-PATH=~/Library/Python/2.7/bin:$PATH #for powerline
-PATH=/opt/brew/heroku/bin:$PATH
-export GOPATH=$HOME
-export PATH=$PATH:$GOPATH/bin
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-export PATH=$HOME/.cargo/bin:$PATH
-export PATH=$HOME/.cargo/env:$PATH
 export GHQ_ROOT='/Users/kazuki-yoshida/.ghq/'
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -231,3 +179,30 @@ if [ -f '/Users/kazuki-yoshida/Downloads/google-cloud-sdk/path.zsh.inc' ]; then 
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/kazuki-yoshida/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kazuki-yoshida/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+# Load pure theme
+zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled with it.
+zinit light sindresorhus/pure
