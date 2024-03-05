@@ -18,8 +18,8 @@ alias gd='git diff'
 alias re='cd $(ghq list -p | peco)'
 alias gco='git checkout `git branch | peco | sed -e "s/^\*[ ]*//g"`'
 alias ip='ipconfig getifaddr en0'
-alias ai='find ./ -name "*.apk" | peco | xargs adb-peco install -r'
-alias gclean='git checkout master && git pull --rebase origin master && git branch --merged origin/master | grep -v "^\s*master" | grep -v "^*" | xargs git branch -D'
+alias ai='find ./ -name "*.apk" | peco | xargs -I{} adb install -r "{}"'
+alias gclean='git checkout main && git pull --rebase origin main && git branch --merged origin/main | grep -v "^\s*main" | grep -v "^*" | xargs git branch -D'
 alias remote-push='git push kazuki-yoshida `git rev-parse --abbrev-ref HEAD`'
 alias origin-push='git push origin `git rev-parse --abbrev-ref HEAD`'
 
@@ -172,7 +172,6 @@ export ANDROID_SDK_ROOT=~/Library/Android/sdk
 export ANDROID_HOME=~/Library/Android/sdk
 
 PATH=~/.rbenv/shims:$ANDROID_HOME/platform-tools/:$ANDROID_HOME/tools/bin/:$ANDROID_HOME/tools:$PATH
-export GHQ_ROOT='/Users/kazuki-yoshida/.ghq/'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/kazuki-yoshida/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kazuki-yoshida/Downloads/google-cloud-sdk/path.zsh.inc'; fi
