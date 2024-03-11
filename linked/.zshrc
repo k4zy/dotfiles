@@ -19,7 +19,6 @@ alias re='cd $(ghq list -p | peco)'
 alias gco='git checkout `git branch | peco | sed -e "s/^\*[ ]*//g"`'
 alias ip='ipconfig getifaddr en0'
 alias ai='find ./ -name "*.apk" | peco | xargs -I{} adb install -r "{}"'
-alias gclean='git checkout main && git pull --rebase origin main && git branch --merged origin/main | grep -v "^\s*main" | grep -v "^*" | xargs git branch -D'
 alias remote-push='git push kazuki-yoshida `git rev-parse --abbrev-ref HEAD`'
 alias origin-push='git push origin `git rev-parse --abbrev-ref HEAD`'
 
@@ -163,6 +162,12 @@ bindkey '^r' peco-select-history
 
 function remote-checkout() {
   git fetch $1 $2 && git checkout -b $2 $1/$2
+}
+
+gclean() {
+  local current_branch=$(git rev-parse --abbrev-ref HEAD)
+  git pull --rebase origin "${current_branch}" && 
+  git branch --merged origin/"${current_branch}" | grep -v "^\s*${current_branch}" | grep -v "^*" | xargs -r git branch -D
 }
 
 #----------------------------------------------------------
