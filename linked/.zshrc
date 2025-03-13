@@ -18,7 +18,7 @@ alias gd='git diff'
 alias re='cd $(ghq list -p | peco)'
 alias gco='git checkout `git branch | peco | sed -e "s/^\*[ ]*//g"`'
 alias ip='ipconfig getifaddr en0'
-alias ai='find ./ -name "*.apk" | peco | xargs -I{} adb install -r "{}"'
+alias ai='find ./ -name "*.apk" | peco | xargs -I{} adb-peco install -r "{}"'
 alias remote-push='git push kazuki-yoshida `git rev-parse --abbrev-ref HEAD`'
 alias origin-push='git push origin `git rev-parse --abbrev-ref HEAD`'
 
@@ -166,8 +166,12 @@ function remote-checkout() {
 
 gclean() {
   local current_branch=$(git rev-parse --abbrev-ref HEAD)
-  git pull --rebase origin "${current_branch}" && 
-  git branch --merged origin/"${current_branch}" | grep -v "^\s*${current_branch}" | grep -v "^*" | xargs -r git branch -D
+
+  # 現在のブランチに対してのみリベースする
+  git fetch origin "${current_branch}" && git rebase origin/"${current_branch}"
+
+  # カレントブランチにマージ済みで、mainやrelease/から始まるブランチを除外して削除
+  git branch --merged origin/"${current_branch}" | grep -v "^\s*${current_branch}" | grep -v "^*" | grep -v "^main$" | grep -v "^release/" | xargs -r git branch -d
 }
 
 #----------------------------------------------------------
@@ -210,3 +214,11 @@ zinit light-mode for \
 # Load pure theme
 zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled with it.
 zinit light sindresorhus/pure
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/kazukiyoshida/.dart-cli-completion/zsh-config.zsh ]] && . /Users/kazukiyoshida/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
