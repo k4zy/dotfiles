@@ -3,7 +3,6 @@ export LC_CTYPE=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 export JLESSCHARSET=japanese-sjis
 export OUTPUT_CHARSET=utf-8
-export PGDATA=/opt/brew/var/postgres
 
 #----------------------------------------------------------
 # エイリアス
@@ -222,3 +221,4 @@ zinit light sindresorhus/pure
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+export PGDATA=/opt/brew/var/postgres
