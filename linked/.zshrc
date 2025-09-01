@@ -1,3 +1,5 @@
+eval "$(starship init zsh)"
+
 # 文字コードの設定
 export LC_CTYPE=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
@@ -17,7 +19,7 @@ alias gd='git diff'
 alias re='cd $(ghq list -p | peco)'
 alias gco='git checkout `git branch | peco | sed -e "s/^\*[ ]*//g"`'
 alias ip='ipconfig getifaddr en0'
-alias ai='find ./ -name "*.apk" | peco | xargs -I{} adb-peco install -r "{}"'
+alias ai='find ./ -name "*.apk" | peco | xargs -I{} adb install -r "{}"'
 alias remote-push='git push kazuki-yoshida `git rev-parse --abbrev-ref HEAD`'
 alias origin-push='git push origin `git rev-parse --abbrev-ref HEAD`'
 
@@ -173,52 +175,10 @@ gclean() {
   git branch --merged origin/"${current_branch}" | grep -v "^\s*${current_branch}" | grep -v "^*" | grep -v "^main$" | grep -v "^release/" | xargs -r git branch -d
 }
 
+
 #----------------------------------------------------------
-# 開発で利用するPATH
+# ツール系
 #----------------------------------------------------------
-export ANDROID_SDK_ROOT=~/Library/Android/sdk
-export ANDROID_HOME=~/Library/Android/sdk
-
-PATH=~/.rbenv/shims:$ANDROID_HOME/platform-tools/:$ANDROID_HOME/tools/bin/:$ANDROID_HOME/tools:$PATH
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kazuki-yoshida/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kazuki-yoshida/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/kazuki-yoshida/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kazuki-yoshida/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
-fi
-
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-### End of Zinit's installer chunk
-
-# Load pure theme
-zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled with it.
-zinit light sindresorhus/pure
-
-## [Completion]
-## Completion scripts setup. Remove the following line to uninstall
-[[ -f /Users/kazukiyoshida/.dart-cli-completion/zsh-config.zsh ]] && . /Users/kazukiyoshida/.dart-cli-completion/zsh-config.zsh || true
-## [/Completion]
-
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-export PGDATA=/opt/brew/var/postgres
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+export PATH=$PATH:~/Library/Android/sdk/platform-tools
+export PATH=$PATH:~/bin
