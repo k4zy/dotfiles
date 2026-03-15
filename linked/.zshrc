@@ -1,4 +1,5 @@
 eval "$(starship init zsh)"
+eval "$(mise activate zsh)"
 
 # 文字コードの設定
 export LC_CTYPE=ja_JP.UTF-8
@@ -20,6 +21,7 @@ alias re='cd $(ghq list -p | peco)'
 alias gco='git checkout `git branch | peco | sed -e "s/^\*[ ]*//g"`'
 alias ip='ipconfig getifaddr en0'
 alias ai='find ./ -name "*.apk" | peco | xargs -I{} adb install -r "{}"'
+alias ag='rg'
 alias remote-push='git push kazuki-yoshida `git rev-parse --abbrev-ref HEAD`'
 alias origin-push='git push origin `git rev-parse --abbrev-ref HEAD`'
 
@@ -165,20 +167,26 @@ function remote-checkout() {
   git fetch $1 $2 && git checkout -b $2 $1/$2
 }
 
-gclean() {
-  local current_branch=$(git rev-parse --abbrev-ref HEAD)
+gclean () {
+  local current_branch
+  current_branch="$(git rev-parse --abbrev-ref HEAD)"
 
-  # 現在のブランチに対してのみリベースする
-  git fetch origin "${current_branch}" && git rebase origin/"${current_branch}"
+  git fetch origin "${current_branch}" &&
+    git rebase "origin/${current_branch}"
 
-  # カレントブランチにマージ済みで、mainやrelease/から始まるブランチを除外して削除
-  git branch --merged origin/"${current_branch}" | grep -v "^\s*${current_branch}" | grep -v "^*" | grep -v "^main$" | grep -v "^release/" | xargs -r git branch -d
+  git branch --merged "origin/${current_branch}" --format='%(refname:short)' \
+    | grep -v "^${current_branch}$" \
+    | grep -v "^main$" \
+    | grep -v "^release/" \
+    | xargs -r git branch -d
 }
 
 
 #----------------------------------------------------------
 # ツール系
 #----------------------------------------------------------
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export PATH=$PATH:~/Library/Android/sdk/platform-tools
 export PATH=$PATH:~/bin
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+export PATH="$HOME/.local/bin:$PATH"
